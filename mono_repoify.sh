@@ -10,11 +10,12 @@ echo_and_run() {
 }
 
 parent_remote="git@github.com:misko/ocp_mono_test.git"
+repos_and_relatives=`pwd`/repos_and_relatives.txt
 
-while read -r remote relative_path branch; 
+{ cat repos_and_relatives.txt; echo; } | while read -r remote relative_path branch; 
 do
     echo "${parent_remote} / $relative_path <= $remote ($branch)"
-done < repos_and_relatives.txt
+done 
 
 read -p "Continue [y/N]" ans
 if [ "$ans" != "y" -a "$ans" != "Y" ]; then
@@ -24,21 +25,21 @@ fi
 
 #download git filter repo
 rm -f git-filter-repo
-wget https://raw.githubusercontent.com/newren/git-filter-repo/main/git-filter-repo
+echo_and_run wget https://raw.githubusercontent.com/newren/git-filter-repo/main/git-filter-repo
 gfr=`pwd`/git-filter-repo
 
 
 # #download the parent repo
-# git clone ${parent_remote} parent_repo
+echo_and_run git clone ${parent_remote} parent_repo
 
-mkdir sub_repos
-pushd sub_repos
-while read -r remote relative_path branch; 
+echo_and_run mkdir sub_repos
+echo_and_run pushd sub_repos
+{ cat ${repos_and_relatives}; echo; }  | while read -r remote relative_path branch; 
 do
     repo_name=`basename $remote | sed 's/.git//g'`
     echo_and_run git clone --branch ${branch} $remote $repo_name
 
-    pushd $repo_name
+    echo_and_run pushd $repo_name
 
     # for some reason this doesn't always work the first time...
     echo_and_run git gc 
@@ -49,12 +50,12 @@ do
     # rename the files in the git tree
     echo_and_run python $gfr --to-subdirectory-filter ${relative_path}
 
-    popd
-done < ../repos_and_relatives.txt
-popd
+    echo_and_run popd
+done 
+echo_and_run popd
 
-pushd parent_repo
-while read -r remote relative_path branch; 
+echo_and_run pushd parent_repo
+{ cat ${repos_and_relatives}; echo; }  | while read -r remote relative_path branch; 
 do
     repo_name=`basename $remote | sed 's/.git//g'`
     echo "Merging $repo_name ($branch) $remote => $relative_path"
@@ -65,5 +66,5 @@ do
     echo_and_run git remote add -f ${repo_name} ../sub_repos/${repo_name} 
 	echo_and_run git merge --allow-unrelated-histories ${repo_name}/${branch} 
 	echo_and_run git remote remove ${repo_name}
-done < ../repos_and_relatives.txt
-popd
+done 
+echo_and_run popd
