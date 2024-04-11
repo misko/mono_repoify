@@ -14,6 +14,9 @@ repos_and_relatives=`pwd`/repos_and_relatives.txt
 
 { cat repos_and_relatives.txt; echo; } | while read -r remote relative_path branch; 
 do
+    if [ -z "$branch"  ]; then
+	   continue
+    fi 
     echo "${parent_remote} / $relative_path <= $remote ($branch)"
 done 
 
@@ -36,6 +39,9 @@ echo_and_run mkdir sub_repos
 echo_and_run pushd sub_repos
 { cat ${repos_and_relatives}; echo; }  | while read -r remote relative_path branch; 
 do
+    if [ -z "$branch"  ]; then
+	   continue
+    fi 
     repo_name=`basename $remote | sed 's/.git//g'`
     echo_and_run git clone --branch ${branch} $remote $repo_name
 
@@ -57,6 +63,9 @@ echo_and_run popd
 echo_and_run pushd parent_repo
 { cat ${repos_and_relatives}; echo; }  | while read -r remote relative_path branch; 
 do
+    if [ -z "$branch"  ]; then
+	   continue
+    fi 
     repo_name=`basename $remote | sed 's/.git//g'`
     echo "Merging $repo_name ($branch) $remote => $relative_path"
     echo_and_run git gc
