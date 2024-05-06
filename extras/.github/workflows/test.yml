@@ -46,7 +46,7 @@ jobs:
           pushd packages/fairchem-core/
           pip install -e .[dev]
           popd
-          pushd packages/fairchem-datagen-oc/
+          pushd packages/fairchem-data-oc/
           pip install -e .[dev]
           popd
           pushd packages/fairchem-demo-ocpapi/
@@ -57,8 +57,8 @@ jobs:
           pushd src/fairchem/core/
           pytest tests -vv --cov-report=xml --cov=fairchem.core
           popd
-          pushd src/fairchem/datagen/oc/
-          pytest tests -vv --cov-report=xml --cov=fairchem.datagen.oc
+          pushd src/fairchem/data/oc/
+          pytest tests -vv --cov-report=xml --cov=fairchem.data.oc
           popd
           pushd src/fairchem/demo/ocpapi/
           pytest tests -vv --cov-report=xml --cov=fairchem.demo.ocpapi

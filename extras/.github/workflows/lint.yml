@@ -30,6 +30,6 @@ jobs:
         run: |
           ruff --version
           ruff check --statistics --config packages/fairchem-core/pyproject.toml src/fairchem/core/
-          ruff check --statistics --config packages/fairchem-datagen-oc/pyproject.toml src/fairchem/datagen/oc/
-          #ruff check --statistics --config packages/fairchem-datagen-om/pyproject.toml src/fairchem/datagen/om/
+          ruff check --statistics --config packages/fairchem-data-oc/pyproject.toml src/fairchem/data/oc/
+          #ruff check --statistics --config packages/fairchem-data-om/pyproject.toml src/fairchem/data/om/
           #ruff check --statistics --config packages/fairchem-demo-ocpapi/pyproject.toml src/fairchem/demo/ocpapi/

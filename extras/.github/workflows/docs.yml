@@ -37,7 +37,7 @@ jobs:
         pushd packages/fairchem-core
         pip install -e .[docs,adsorbml]
         popd
-        pushd packages/fairchem-datagen-oc
+        pushd packages/fairchem-data-oc
         pip install -e .[dev]
         popd
         pushd packages/fairchem-demo-ocpapi
