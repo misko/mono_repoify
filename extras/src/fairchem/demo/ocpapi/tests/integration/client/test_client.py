@@ -5,8 +5,15 @@ from unittest import IsolatedAsyncioTestCase, mock
 
 import numpy as np
 import pytest
-from fairchem.demo.ocpapi.client import (Atoms, Bulk, Client, Model, Slab,
-                                         SlabMetadata, Status)
+from fairchem.demo.ocpapi.client import (
+    Atoms,
+    Bulk,
+    Client,
+    Model,
+    Slab,
+    SlabMetadata,
+    Status,
+)
 
 log = logging.getLogger(__name__)
 
@@ -80,7 +87,7 @@ class TestClient(IsolatedAsyncioTestCase):
             pytest.xfail(
                 f"Expected slab can be slightly off (numerical error?) from the actual slab returned; This test is flaky;"
             )
-        self.assertIn(response.slabs,)
+        self.assertIn(expected_slab, response.slabs)
 
     async def test_get_adsorbate_slab_configs(self) -> None:
         # Make sure that adsorbate placements are generated for a slab

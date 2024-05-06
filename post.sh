@@ -13,12 +13,22 @@ git mv src/fairchem/demo/ocpapi/ocpapi/* ./src/fairchem/demo/ocpapi/
 git mv src/fairchem/datagen/oc/ocdata/* ./src/fairchem/datagen/oc/
 git add -u 
 git commit -m 'folder promote ocpapi and open-catalyst-dataset'
-cp -rf ../extras/.github ../extras/packages ../extras/src ./
+cp -rf ../extras/.github ../extras/packages ../extras/src ../extras/README.md ../extras/main.py ./
 git add -u
 git commit -m 'fixes to workflow'
+cp -f ../extras/src/fairchem/core/common/utils.py ./src/fairchem/core/common/
+git add -u
+git commit -m 'fix yaml load'
 git add packages 
 git commit -m 'add packages'
 ruff check --fix --statistics --config packages/fairchem-core/pyproject.toml src/fairchem/core/
 ruff check --fix --statistics --config packages/fairchem-datagen-oc/pyproject.toml src/fairchem/datagen/oc/
 git add -u
 git commit -m 'ruff fixes'
+find src/ | grep .gitignore | xargs git rm 
+find src/ | grep .pre-commit-config.yaml | xargs git rm 
+git  commit -m 'remove unused gitignore and pre-commit-config'
+git add README.md
+git commit -m 'add temporary readme'
+git add main.py
+git commit -m 'add symlink for main.py'
