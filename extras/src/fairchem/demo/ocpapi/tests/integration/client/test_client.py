@@ -2,16 +2,11 @@ import logging
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 from unittest import IsolatedAsyncioTestCase, mock
+
 import numpy as np
-from fairchem.demo.ocpapi.client import (
-    Atoms,
-    Bulk,
-    Client,
-    Model,
-    Slab,
-    SlabMetadata,
-    Status,
-)
+import pytest
+from fairchem.demo.ocpapi.client import (Atoms, Bulk, Client, Model, Slab,
+                                         SlabMetadata, Status)
 
 log = logging.getLogger(__name__)
 
