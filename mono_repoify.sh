@@ -9,7 +9,8 @@ echo_and_run() {
     "$@" >> ${log_file}  2>&1
 }
 
-parent_remote="git@github.com:misko/ocp_mono_test.git"
+#parent_remote="git@github.com:misko/ocp_mono_test.git"
+parent_remote="git@github.com:Open-Catalyst-Project/ocp.git"
 repos_and_relatives=`pwd`/repos_and_relatives.txt
 
 { cat repos_and_relatives.txt; echo; } | while read -r remote relative_path branch; 
@@ -34,6 +35,21 @@ gfr=`pwd`/git-filter-repo
 
 # #download the parent repo
 echo_and_run git clone ${parent_remote} parent_repo
+pushd parent_repo
+git branch monorepo
+git checkout monorepo
+popd
+#want to move the repo around here
+pushd parent_repo
+mkdir -p src/fairchem/core
+git mv requirements.txt requirements-optional.txt configs ocpmodels/* scripts tests *.yml *.md *.py *.toml src/fairchem/core
+rmdir ocpmodels
+git commit -m 'move to new src folder'
+echo_and_run git gc 
+echo_and_run sleep 1
+echo_and_run git gc 
+echo_and_run git gc 
+popd
 
 echo_and_run mkdir sub_repos
 echo_and_run pushd sub_repos

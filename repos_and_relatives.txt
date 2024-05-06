@@ -1,5 +1,6 @@
-git@github.com:Open-Catalyst-Project/Open-Catalyst-Dataset.git data/open-catalyst-dataset main
-git@github.com:Open-Catalyst-Project/om-data.git data/om-data main
-git@github.com:Open-Catalyst-Project/odac-data.git data/odac-data main
-git@github.com:Open-Catalyst-Project/ocpapi.git demo/ocpapi main
-git@github.com:Open-Catalyst-Project/AdsorbML.git applications/adsorb-ml main
+git@github.com:Open-Catalyst-Project/Open-Catalyst-Dataset.git src/fairchem/datagen/oc main
+git@github.com:Open-Catalyst-Project/om-data.git src/fairchem/datagen/om main
+git@github.com:Open-Catalyst-Project/odac-data.git src/fairchem/datagen/odac main
+git@github.com:Open-Catalyst-Project/ocpapi.git src/fairchem/demo/ocpapi main
+git@github.com:Open-Catalyst-Project/AdsorbML.git src/fairchem/applications/AdsorbML main
+git@github.com:Open-Catalyst-Project/CatTSunami.git src/fairchem/applications/CatTSunami master
