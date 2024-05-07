@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "fairchem.demo.ocpapi"
 dynamic = ["version"]
 description = "Python client library for the Open Catalyst API"
-readme = "../../src/fairchem/demo/ocpapi/README.md"
+readme = "../../src/fairchem/demo/README.md"
 license = ""
 requires-python = ">=3.9"
 authors = [
