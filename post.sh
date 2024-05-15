@@ -47,3 +47,6 @@ git commit -m 'remove extra github workflows from data/oc'
 find src/ | grep pyproject.toml | xargs git rm 
 find src/ | grep setup.py | xargs git rm 
 git commit -m 'remove extra pyproject.toml and setup.py'
+git mv src/fairchem/core/env.cpu.yml src/fairchem/core/env.gpu.yml src/fairchem/core/requirements.txt src/fairchem/core/requirements-optional.txt packages/
+git mv src/fairchem/core/codecov.yml .
+git commit -m 'move enviornment deps to packages'
